@@ -12,7 +12,7 @@ export interface HistoryApiFallbackOptions {
     root: string;
     /** 重写目标，默认 /index.html */
     index?: string;
-    /** 自定义重写规则 */
+    /** 自定义重写规则，会与默认规则合并（默认含 GitLab 风格 /-/ 路径） */
     rewrites?: {
         from: RegExp;
         to: string | ((ctx: { parsedUrl: URL; match: RegExpMatchArray }) => string);
@@ -30,7 +30,10 @@ export interface HistoryApiFallbackOptions {
 export function historyApiFallback(options: HistoryApiFallbackOptions): MiddlewareHandler {
     const { root } = options;
     const index = options.index ?? "/index.html";
-    const rewrites = options.rewrites ?? [];
+    const rewrites = [
+        ...(options.rewrites ?? []),
+        { from: /\/-\//, to: index },
+    ];
     const htmlAcceptHeaders = options.htmlAcceptHeaders ?? ["text/html", "*/*"];
     const disableDotRule = options.disableDotRule ?? false;
     const logger =

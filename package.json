@@ -1,7 +1,7 @@
 {
   "name": "hono-history-api-fallback",
   "type": "module",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "description": "A starter for creating a TypeScript package.",
   "author": "Author Name <author.name@mail.com>",
   "license": "MIT",
