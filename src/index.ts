@@ -1,29 +1,29 @@
 /**
- * connect-history-api-fallback 的 Hono 实现
- * 行为与 https://github.com/bripkens/connect-history-api-fallback 一致
- * 用于 SPA 的 HTML5 History 路由 fallback
+ * Hono port of connect-history-api-fallback.
+ * Behavior aligns with https://github.com/bripkens/connect-history-api-fallback
+ * for SPA HTML5 History routing fallback.
  */
 import { join } from "node:path";
 import { readFileSync, existsSync } from "node:fs";
 import type { MiddlewareHandler } from "hono";
 
 export interface HistoryApiFallbackOptions {
-    /** 静态文件根目录，用于解析 index 路径 */
+    /** Static file root directory; used to resolve the index and rewritten paths */
     root: string;
-    /** 重写目标，默认 /index.html */
+    /** Rewrite target path; defaults to `/index.html` */
     index?: string;
-    /** 自定义重写规则，会与默认规则合并（默认含 GitLab 风格 /-/ 路径） */
+    /** Custom rewrite rules merged with defaults (includes GitLab-style `/-/` paths) */
     rewrites?: {
         from: RegExp;
         to: string | ((ctx: { parsedUrl: URL; match: RegExpMatchArray }) => string);
     }[];
-    /** Accept 头匹配列表，默认包含 text/html 与任意类型 */
+    /** Accept header tokens to treat as HTML requests; defaults include text/html and the any-type wildcard */
     htmlAcceptHeaders?: string[];
-    /** 禁用点规则（路径含 . 视为文件请求） */
+    /** Disable the dot rule (paths containing `.` after the last `/` are treated as file requests) */
     disableDotRule?: boolean;
-    /** 是否输出日志 */
+    /** Enable verbose logging */
     verbose?: boolean;
-    /** 自定义日志函数 */
+    /** Custom logger (defaults to `console.log` when `verbose` is true) */
     logger?: (...args: unknown[]) => void;
 }
 

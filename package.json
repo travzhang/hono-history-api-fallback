@@ -1,17 +1,24 @@
 {
   "name": "hono-history-api-fallback",
-  "type": "module",
-  "version": "0.0.1-beta.1",
-  "description": "A starter for creating a TypeScript package.",
-  "author": "Author Name <author.name@mail.com>",
+  "version": "0.0.2",
+  "description": "Hono middleware that mirrors connect-history-api-fallback for SPA HTML5 History routing.",
+  "keywords": [
+    "hono",
+    "middleware",
+    "spa",
+    "history-api-fallback",
+    "connect-history-api-fallback"
+  ],
   "license": "MIT",
-  "homepage": "https://github.com/author/library#readme",
+  "author": "travzhang",
+  "type": "module",
+  "homepage": "https://github.com/travzhang/hono-history-api-fallback#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/author/library.git"
+    "url": "git+https://github.com/travzhang/hono-history-api-fallback.git"
   },
   "bugs": {
-    "url": "https://github.com/author/library/issues"
+    "url": "https://github.com/travzhang/hono-history-api-fallback/issues"
   },
   "exports": {
     ".": "./dist/index.mjs",
@@ -26,16 +33,16 @@
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
-    "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "hono": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
-    "bumpp": "^10.3.2",
     "hono": "^4.12.2",
     "tsdown": "^0.18.1",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "typescript": "^5.9.3"
   }
 }
